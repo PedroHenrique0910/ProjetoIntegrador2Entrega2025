@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Perfil</title>
+    <link href="/dist/styles.css" rel="stylesheet" />
+  </head>
+  <body
+    class="bg-gray-100 text-gray-800 flex justify-center items-center min-h-screen"
+  >
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-[90vw] p-6">
+      <div class="text-center mb-6">
+        <h1 class="text-2xl font-semibold text-gray-700">👤 Editar Perfil</h1>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Nome:</label>
+        <p id="nomeUsuario" class="text-gray-600">Seu Nome</p>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Email:</label>
+        <p id="emailUsuario" class="text-gray-600">seuemail@example.com</p>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700"
+          >Senha Atual:</label
+        >
+        <input
+          type="password"
+          id="senha-atual"
+          placeholder="Sua Senha Atual"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700"
+          >Nova Senha:</label
+        >
+        <input
+          type="password"
+          id="nova-senha"
+          placeholder="Nova Senha"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700"
+          >Confirmar Nova Senha:</label
+        >
+        <input
+          type="password"
+          id="confirmar-senha"
+          placeholder="Confirmar Nova Senha"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+        />
+      </div>
+
+      <button
+        class="w-full bg-teal-500 text-white py-2 rounded-md hover:bg-teal-600 focus:outline-none"
+        onclick="salvarPerfil()"
+      >
+        Salvar Informações
+      </button>
+      <button
+        class="w-full bg-red-500 text-white py-2 mt-4 rounded-md hover:bg-red-600 focus:outline-none"
+        onclick="window.location.href='/home'"
+      >
+        Voltar
+      </button>
+    </div>
+
+    <script>
+      window.onload = function () {
+        const email = localStorage.getItem("email");
+        const senha = localStorage.getItem("senha");
+
+        document.getElementById("emailUsuario").innerText = email;
+
+        const data = { email: email };
+
+        fetch("/users/searchName", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const { nome } = data;
+            document.getElementById("nomeUsuario").innerText = nome;
+          });
+      };
+    </script>
+
+    <script>
+      function salvarPerfil() {
+        const senhaAtual = document.getElementById("senha-atual").value;
+        const novaSenha = document.getElementById("nova-senha").value;
+        const confirmarSenha = document.getElementById("confirmar-senha").value;
+
+        if (novaSenha !== confirmarSenha) {
+          alert("As novas senhas não correspondem.");
+          return;
+        }
+
+        if (novaSenha === "") {
+          alert("A nova senha não pode estar vazia.");
+          return;
+        }
+
+        const data = {
+          senhaAtual: senhaAtual,
+          novaSenha: novaSenha,
+          email: localStorage.getItem("email"),
+        };
+
+        fetch("/users/changePassword", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            window.alert(data.message);
+            if (data.message === "Senha alterada com sucesso") {
+              window.location.href = "/home";
+            } else {
+              window.location.href = "/users/profile";
+            }
+          });
+      }
+    </script>
+  </body>
+</html>
