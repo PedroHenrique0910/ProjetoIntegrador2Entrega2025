@@ -1,12 +1,12 @@
 # 💻📱 Projeto Integrador - 2025
 
----
+----
 
 ## 📘 **Descrição**
 
 Este repositório contém o desenvolvimento do **Projeto Integrador - Análise de Soluções Integradas para Organizações** do curso de **Tecnologia em Análise e Desenvolvimento de Sistemas**.
 
----
+----
 
 ## 🛠️ **Tecnologias Utilizadas**
 
