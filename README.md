@@ -86,11 +86,18 @@ Observação: É necessário ter o Node.js e o MySQL instalados na máquina para
 ---
 
 ## 🗄️ **Modelo Físico do Banco de Dados**
--- Criação do banco de dados
+
+-- ===========================
+-- 🛠️ Criação do Banco de Dados
+-- ===========================
+
 CREATE DATABASE projetointegrador;
 USE projetointegrador;
 
--- Tabela de usuários
+-- ===========================
+-- 👥 Tabela: usuarios
+-- ===========================
+
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
@@ -98,7 +105,10 @@ CREATE TABLE usuarios (
     senha VARCHAR(255) NOT NULL
 );
 
--- Tabela de profissionais
+-- ===========================
+-- 👩‍💼 Tabela: profissionais
+-- ===========================
+
 CREATE TABLE profissionais (
     id INT AUTO_INCREMENT PRIMARY KEY,
     foto VARCHAR(255),
@@ -110,7 +120,10 @@ CREATE TABLE profissionais (
     clientesAtendidos INT
 );
 
--- Tabela de avaliações dos profissionais
+-- ===========================
+-- ⭐ Tabela: avaliacoes
+-- ===========================
+
 CREATE TABLE avaliacoes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     comentario TEXT,
@@ -119,7 +132,10 @@ CREATE TABLE avaliacoes (
     FOREIGN KEY (profissional_id) REFERENCES profissionais(id)
 );
 
--- Tabela de notícias
+-- ===========================
+-- 📰 Tabela: noticias
+-- ===========================
+
 CREATE TABLE noticias (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(255) NOT NULL,
@@ -130,12 +146,15 @@ CREATE TABLE noticias (
     link VARCHAR(255)
 );
 
-## 📥 **Inserção de Dados Iniciais**
--- Inserção do usuário master
+-- ===========================
+-- 📥 Inserção de Dados Iniciais
+-- ===========================
+
+-- Usuário Master
 INSERT INTO usuarios(nome, email, senha) VALUES
 ('admin', 'admin@master.com.br', 'admin');
 
--- Inserção de profissionais
+-- Profissionais
 INSERT INTO profissionais (foto, nome, sobrenome, profissao, avaliacao, anosAtuacao, clientesAtendidos) VALUES
 ('woman.jpg', 'Ana', 'Silva', 'Nutricionista', 4.8, 5, 150),
 ('men.jpg', 'Pedro', 'Lima', 'Nutricionista', 4.5, 3, 100),
@@ -144,7 +163,7 @@ INSERT INTO profissionais (foto, nome, sobrenome, profissao, avaliacao, anosAtua
 ('woman.jpg', 'Julia', 'Fernandes', 'Personal Trainer', 4.8, 5, 90),
 ('men.jpg', 'Ricardo', 'Almeida', 'Personal Trainer', 4.7, 6, 80);
 
--- Inserção de avaliações
+-- Avaliações
 INSERT INTO avaliacoes (comentario, estrelas, profissional_id) VALUES
 ('Excelente profissional! Mudou minha relação com a comida.', 5, 1),
 ('Muito atenciosa e dedicada. Recomendo!', 4, 1),
@@ -159,7 +178,7 @@ INSERT INTO avaliacoes (comentario, estrelas, profissional_id) VALUES
 ('Os treinos são desafiadores e eficientes!', 5, 6),
 ('Ótimo motivador, me ajudou a alcançar meus objetivos.', 4, 6);
 
--- Inserção de notícias
+-- Notícias
 INSERT INTO noticias (titulo, autor, data, imagem, detalhes, link) VALUES
 ('Dicas para uma Alimentação Saudável', 'Nutricionista Ana Silva', '2024-11-05', 'health.jpg', 
  'Manter uma alimentação saudável é essencial para prevenir doenças e melhorar a qualidade de vida.\nInicie suas refeições com vegetais, priorize alimentos integrais e reduza o consumo de açúcar e gorduras saturadas.\n\nEstudos mostram que pequenas mudanças, como incluir frutas frescas no café da manhã e optar por lanches naturais, podem fazer uma grande diferença.\n\n*Conclusão:*\nAdotar uma dieta equilibrada é um passo importante para alcançar o bem-estar físico e mental.', 
@@ -172,3 +191,4 @@ INSERT INTO noticias (titulo, autor, data, imagem, detalhes, link) VALUES
 ('Impacto do Sono na Saúde', 'Especialista Mariana Costa', '2024-11-07', 'health.jpg', 
  'Dormir bem é tão importante quanto manter uma boa alimentação e praticar exercícios.\nA privação do sono está associada a riscos de obesidade, diabetes e doenças cardiovasculares.\n\nRecomenda-se de 7 a 9 horas de sono por noite para adultos, em um ambiente silencioso e confortável.\n\n*Importância do Tema:\nA saúde do sono é uma área que requer maior atenção, especialmente em uma sociedade que valoriza o ritmo acelerado.\n\nPerspectivas Futuras:*\nPesquisas estão sendo realizadas para entender melhor os impactos do sono de qualidade em diversas áreas da saúde.', 
  'impacto-sono-saude.html');
+
