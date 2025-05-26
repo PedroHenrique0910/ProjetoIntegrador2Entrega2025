@@ -35,3 +35,11 @@ O objetivo principal do projeto é o desenvolvimento de um protótipo funcional 
 ## Link do vídeo apresentação do projeto
 
 - https://www.youtube.com/watch?v=LffwF1fW_jI
+
+## Links da Landing Page
+
+### Deploy no GitHub Pages
+https://rafaelbarcarol.github.io/landing_page_projeto_integrador_analise_solucoes_integradas_organizacoes_2025/
+
+### Repositório
+https://github.com/rafaelbarcarol/landing_page_projeto_integrador_analise_solucoes_integradas_organizacoes_2025
