@@ -59,12 +59,28 @@ Para isso, foi criada uma versão web da aplicação, que é responsiva e simula
 
 ---
 
+## Como Executar o Projeto
+
+- Certifique-se de ter o MySQL instalado e execute o script SQL fornecido para criar o banco de dados.
+
+- No projeto: Atualize o arquivo .env com as informações de login do seu MySQL (usuário e senha).
+
+- No terminal da aplicação, rode o comando: npm install dotenv (se ainda não tiver o pacote).
+
+- Após instalar o dotenv, execute o comando: node index.js.
+
+- Pronto! A aplicação estará disponível em: http://localhost:8080
+
+Observação: É necessário ter o Node.js e o MySQL instalados na máquina para executar o projeto.
+
+---
+
 ## 👥 **Participantes do Grupo**
 
-- 👩‍💻 Beatriz  
-- 👨‍💻 Juliano  
-- 👩‍💻 Luanna  
-- 👨‍💻 Pedro  
-- 👨‍💻 Rafael
+- 👩‍💻 Beatriz Vilar Guimarães Pereira  
+- 👨‍💻 Juliano Teruki Felippi  
+- 👩‍💻 Luanna Freire Salgado 
+- 👨‍💻 Pedro Henrique Ferreira Dos Santos 
+- 👨‍💻 Rafael Michalofwski Barcarol
 
 ---
