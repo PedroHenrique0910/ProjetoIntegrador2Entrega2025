@@ -54,7 +54,7 @@ Para isso, foi criada uma versão web da aplicação, que é responsiva e simula
 ### 🚀 **Deploy no GitHub Pages**  
 🔗 [https://rafaelbarcarol.github.io/landing_page_projeto_integrador_analise_solucoes_integradas_organizacoes_2025/](https://rafaelbarcarol.github.io/landing_page_projeto_integrador_analise_solucoes_integradas_organizacoes_2025/)
 
-### 📂 **Repositório**  
+### 📂 **Repositório da Landing Page**  
 🔗 [https://github.com/rafaelbarcarol/landing_page_projeto_integrador_analise_solucoes_integradas_organizacoes_2025](https://github.com/rafaelbarcarol/landing_page_projeto_integrador_analise_solucoes_integradas_organizacoes_2025)
 
 ---
@@ -85,13 +85,12 @@ Observação: É necessário ter o Node.js e o MySQL instalados na máquina para
 
 ---
 
-## **Modelo Físico do Banco de Dados**
-
+## 🗄️ **Modelo Físico do Banco de Dados**
+-- Criação do banco de dados
 CREATE DATABASE projetointegrador;
-
 USE projetointegrador;
 
-
+-- Tabela de usuários
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
@@ -99,7 +98,7 @@ CREATE TABLE usuarios (
     senha VARCHAR(255) NOT NULL
 );
 
-
+-- Tabela de profissionais
 CREATE TABLE profissionais (
     id INT AUTO_INCREMENT PRIMARY KEY,
     foto VARCHAR(255),
@@ -111,6 +110,7 @@ CREATE TABLE profissionais (
     clientesAtendidos INT
 );
 
+-- Tabela de avaliações dos profissionais
 CREATE TABLE avaliacoes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     comentario TEXT,
@@ -119,7 +119,7 @@ CREATE TABLE avaliacoes (
     FOREIGN KEY (profissional_id) REFERENCES profissionais(id)
 );
 
-
+-- Tabela de notícias
 CREATE TABLE noticias (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(255) NOT NULL,
@@ -130,13 +130,12 @@ CREATE TABLE noticias (
     link VARCHAR(255)
 );
 
-
--- Inserindo Master na tabela usuarios
+## 📥 **Inserção de Dados Iniciais**
+-- Inserção do usuário master
 INSERT INTO usuarios(nome, email, senha) VALUES
 ('admin', 'admin@master.com.br', 'admin');
 
-
--- Inserindo dados na tabela profissionais
+-- Inserção de profissionais
 INSERT INTO profissionais (foto, nome, sobrenome, profissao, avaliacao, anosAtuacao, clientesAtendidos) VALUES
 ('woman.jpg', 'Ana', 'Silva', 'Nutricionista', 4.8, 5, 150),
 ('men.jpg', 'Pedro', 'Lima', 'Nutricionista', 4.5, 3, 100),
@@ -145,7 +144,7 @@ INSERT INTO profissionais (foto, nome, sobrenome, profissao, avaliacao, anosAtua
 ('woman.jpg', 'Julia', 'Fernandes', 'Personal Trainer', 4.8, 5, 90),
 ('men.jpg', 'Ricardo', 'Almeida', 'Personal Trainer', 4.7, 6, 80);
 
--- Inserindo dados na tabela avaliacoes
+-- Inserção de avaliações
 INSERT INTO avaliacoes (comentario, estrelas, profissional_id) VALUES
 ('Excelente profissional! Mudou minha relação com a comida.', 5, 1),
 ('Muito atenciosa e dedicada. Recomendo!', 4, 1),
@@ -160,15 +159,16 @@ INSERT INTO avaliacoes (comentario, estrelas, profissional_id) VALUES
 ('Os treinos são desafiadores e eficientes!', 5, 6),
 ('Ótimo motivador, me ajudou a alcançar meus objetivos.', 4, 6);
 
-
--- Inserindo dados na tabela noticias
+-- Inserção de notícias
 INSERT INTO noticias (titulo, autor, data, imagem, detalhes, link) VALUES
 ('Dicas para uma Alimentação Saudável', 'Nutricionista Ana Silva', '2024-11-05', 'health.jpg', 
  'Manter uma alimentação saudável é essencial para prevenir doenças e melhorar a qualidade de vida.\nInicie suas refeições com vegetais, priorize alimentos integrais e reduza o consumo de açúcar e gorduras saturadas.\n\nEstudos mostram que pequenas mudanças, como incluir frutas frescas no café da manhã e optar por lanches naturais, podem fazer uma grande diferença.\n\n*Conclusão:*\nAdotar uma dieta equilibrada é um passo importante para alcançar o bem-estar físico e mental.', 
  'dica-alimentacao-saudavel.html'),
+
 ('Importância do Exercício Físico Diário', 'Dr. Carlos Lima', '2024-11-06', 'health.jpg', 
  'A prática regular de exercícios físicos ajuda no controle do peso, melhora a circulação e reduz o risco de doenças cardíacas.\nAtividades simples, como caminhar 30 minutos por dia, podem trazer benefícios significativos.\n\nAlém disso, exercícios também favorecem a saúde mental, ajudando a combater o estresse e a ansiedade.\n\n*Análise:*\nEstabelecer uma rotina de atividades físicas é uma das melhores maneiras de cuidar do corpo e da mente.', 
  'importancia-exercicio-fisico.html'),
+
 ('Impacto do Sono na Saúde', 'Especialista Mariana Costa', '2024-11-07', 'health.jpg', 
  'Dormir bem é tão importante quanto manter uma boa alimentação e praticar exercícios.\nA privação do sono está associada a riscos de obesidade, diabetes e doenças cardiovasculares.\n\nRecomenda-se de 7 a 9 horas de sono por noite para adultos, em um ambiente silencioso e confortável.\n\n*Importância do Tema:\nA saúde do sono é uma área que requer maior atenção, especialmente em uma sociedade que valoriza o ritmo acelerado.\n\nPerspectivas Futuras:*\nPesquisas estão sendo realizadas para entender melhor os impactos do sono de qualidade em diversas áreas da saúde.', 
  'impacto-sono-saude.html');
